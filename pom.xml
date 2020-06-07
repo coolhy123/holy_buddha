@@ -80,6 +80,11 @@
             <artifactId>mybatis-plus-boot-starter</artifactId>
             <version>3.3.2</version>
         </dependency>
+        <!--<dependency>-->
+            <!--<groupId>com.baomidou</groupId>-->
+            <!--<artifactId>mybatis-plus</artifactId>-->
+            <!--<version>3.3.1</version>-->
+        <!--</dependency>-->
         <!--mybatis plus 整合代码生成器插件依赖 开始-->
         <dependency>
             <groupId>com.baomidou</groupId>
@@ -88,17 +93,6 @@
         </dependency>
 
 
-        <!--模板引擎 fremarker与velocity 二选一 -->
-        <dependency>
-            <groupId>org.freemarker</groupId>
-            <artifactId>freemarker</artifactId>
-            <version>2.3.30</version>
-        </dependency>
-        <!--<dependency>-->
-            <!--<groupId>org.apache.velocity</groupId>-->
-            <!--<artifactId>velocity-engine-core</artifactId>-->
-            <!--<version>2.2</version>-->
-        <!--</dependency>-->
         <!--mybatis plus 整合代码生成器插件依赖 结束-->
     </dependencies>
 
