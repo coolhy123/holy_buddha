@@ -1,3 +1,5 @@
+server:
+    port: 8081
 # 配置freemarker
 spring:
   freemarker:
@@ -28,4 +30,7 @@ logging:
   level:
     cn.com.oceansoft.osc.ms.persistence: debug
 mybatis-plus:
-  mapper-locations:  classpath/mapping/**/**.xml
+  mapper-locations:  classpath:/mapping/**/**.xml
+  #配置sql打印
+  configuration:
+      log-impl: org.apache.ibatis.logging.stdout.StdOutImpl

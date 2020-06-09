@@ -1,7 +1,7 @@
 /*
 Navicat MySQL Data Transfer
 
-Source Server         : hydu
+Source Server         : heyong1
 Source Server Version : 50726
 Source Host           : localhost:3306
 Source Database       : holy_buddha
@@ -10,7 +10,7 @@ Target Server Type    : MYSQL
 Target Server Version : 50726
 File Encoding         : 65001
 
-Date: 2020-06-07 23:20:50
+Date: 2020-06-09 15:30:22
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -30,10 +30,10 @@ CREATE TABLE `permission` (
 -- ----------------------------
 -- Records of permission
 -- ----------------------------
-INSERT INTO `permission` VALUES ('0', '/addMember', 'addMember', '0');
-INSERT INTO `permission` VALUES ('1', '/showMember', 'showMember', '0');
-INSERT INTO `permission` VALUES ('2', '/deleteMember', 'deleteMember', '0');
-INSERT INTO `permission` VALUES ('3', '/updateMember', 'updateMember', '0');
+INSERT INTO `permission` VALUES ('0', '/addMember', '添加用户', 'addMember');
+INSERT INTO `permission` VALUES ('1', '/showMember', '查询用户', 'showMember');
+INSERT INTO `permission` VALUES ('2', '/deleteMember', '删除用户', 'deleteMember');
+INSERT INTO `permission` VALUES ('3', '/updateMember', '更新用户', 'updateMember');
 
 -- ----------------------------
 -- Table structure for `role`
@@ -44,7 +44,7 @@ CREATE TABLE `role` (
   `role_name` varchar(50) DEFAULT NULL COMMENT '角色名',
   `role_description` varchar(50) DEFAULT NULL COMMENT '角色说明',
   PRIMARY KEY (`role_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of role
@@ -81,24 +81,24 @@ INSERT INTO `role_permission` VALUES ('4', '1');
 -- ----------------------------
 DROP TABLE IF EXISTS `user`;
 CREATE TABLE `user` (
-  `user_id` int(10) NOT NULL AUTO_INCREMENT COMMENT 'userid',
-  `user_name` varchar(50) DEFAULT NULL COMMENT '用户名称',
-  `user_real_name` varchar(50) DEFAULT NULL COMMENT '真实姓名',
-  `password` varchar(50) DEFAULT NULL COMMENT '密码',
-  `create_date` date DEFAULT NULL COMMENT '创建时间',
-  `last_login_time` date DEFAULT NULL COMMENT '最后登录时间',
-  `overdue` int(5) DEFAULT NULL COMMENT '是否过期0否、1是',
-  `user_status` int(5) DEFAULT '1' COMMENT '是否可用0否 1是',
-  `islocking` int(5) DEFAULT NULL COMMENT '是否锁定0否、1是',
-  `certificate_overdue` int(5) DEFAULT NULL COMMENT '证书是否过期0否、1是',
-  PRIMARY KEY (`user_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8;
+  `id` int(10) NOT NULL,
+  `username` varchar(50) DEFAULT NULL,
+  `realname` varchar(50) DEFAULT NULL,
+  `password` varchar(50) DEFAULT NULL,
+  `createDate` date DEFAULT NULL,
+  `lastLoginTime` date DEFAULT NULL,
+  `enabled` int(5) DEFAULT NULL,
+  `accountNonExpired` int(5) DEFAULT NULL,
+  `accountNonLocked` int(5) DEFAULT NULL,
+  `credentialsNonExpired` int(5) DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of user
 -- ----------------------------
-INSERT INTO `user` VALUES ('0', 'admin', 'heyong', 'admin', '2020-06-07', '2020-06-07', '0', '1', '0', '0');
-INSERT INTO `user` VALUES ('1', 'heyong', 'heyong', 'heyong', '2020-06-07', '2020-06-07', '0', '1', '0', '0');
+INSERT INTO `user` VALUES ('0', 'admin', '何永', '2c8e5dfa187f49630f27d969a8cb3d8d', '2018-11-13', '2018-11-13', '1', '1', '1', '1');
+INSERT INTO `user` VALUES ('1', 'heyong', '何永', 'e2693cd3f8ed9bcc3821f3f8a9ff081c', '2018-11-13', '2018-11-13', '1', '1', '1', '1');
 
 -- ----------------------------
 -- Table structure for `user_role`

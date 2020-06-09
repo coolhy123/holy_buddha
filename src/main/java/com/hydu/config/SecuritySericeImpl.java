@@ -1,6 +1,9 @@
 package com.hydu.config;
 
 
+import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
+import com.hydu.entity.Permission;
+import com.hydu.mapper.PermissionMapper;
 import com.hydu.services.MemberDetailsService;
 import com.hydu.utils.MD5Util;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,6 +17,9 @@ import org.springframework.security.crypto.password.NoOpPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Component;
 
+import java.sql.Wrapper;
+import java.util.*;
+
 /**
  * @Author heyong
  * @Date: 2020/6/4  22:52
@@ -24,6 +30,9 @@ public class SecuritySericeImpl extends WebSecurityConfigurerAdapter {
 
     @Autowired
     private MemberDetailsService memberDetailsService;
+
+    @Autowired
+    private PermissionMapper permissionMapper;
     /**
      * 添加授权账号
      * @param auth
@@ -80,16 +89,28 @@ public class SecuritySericeImpl extends WebSecurityConfigurerAdapter {
          * 使用basic登录，浏览器自带登录
          *
          */
-       // http.authorizeRequests().antMatchers("/**").fullyAuthenticated().and().httpBasic();
 
+        QueryWrapper<Permission>  wrapper = new QueryWrapper<>();
+        List<Permission> permissions = permissionMapper.selectList(wrapper);
+
+        /**
+         * 动态重数据库查询数据权限数据之后通过Java8 新特性动态配置权限
+         */
+        ExpressionUrlAuthorizationConfigurer<HttpSecurity>.ExpressionInterceptUrlRegistry
+                expressionInterceptUrlRegistry = http.authorizeRequests();
+        permissions.forEach((permission)->{expressionInterceptUrlRegistry
+                .antMatchers(permission.getRequestUrl()).hasAnyAuthority(permission.getPermissionStatus());
+        });
+        expressionInterceptUrlRegistry.antMatchers("/login").permitAll()
+                .antMatchers("/**").fullyAuthenticated().and().formLogin().loginPage("/login").and().csrf().disable();
         /**
          * 使用formlogin形式
          * 默认使用 loginForm登录
          */
-        http.authorizeRequests().antMatchers("/addMember").hasAnyAuthority("addMember")
-                .antMatchers("/showMmember").hasAnyAuthority("showMmember")
-                .antMatchers("/login").permitAll()
-                .antMatchers("/**").fullyAuthenticated().and().formLogin().loginPage("/login").and().csrf().disable();
+//        http.authorizeRequests().antMatchers("/addMember").hasAnyAuthority("addMember")
+//                .antMatchers("/showMmember").hasAnyAuthority("showMmember")
+//                .antMatchers("/login").permitAll()
+//                .antMatchers("/**").fullyAuthenticated().and().formLogin().loginPage("/login").and().csrf().disable();
     }
 
     @Bean

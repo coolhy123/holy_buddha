@@ -3,13 +3,13 @@
 <mapper namespace="com.hydu.mapper.UserMapper">
 
     <select id="findByUsername" resultType="com.hydu.entity.User">
-      select * from user where user_name = #{userName}
+      select * from user where username = #{userName}
     </select>
 
-    <select id="findPermissionByUsername" resultType="com.hydu.entity.User">
+    <select id="findPermissionByUsername" resultType="com.hydu.entity.Permission">
         select p.* from user u
-          inner join user_role ur on u.user_id = ur.user_id
+          inner join user_role ur on u.id = ur.user_id
           inner join role_permission rp on ur.role_id = rp.role_id
-          inner join permission p on rp.permission_id = p.permission_id where u.user_name == #{userName};
+          inner join permission p on rp.permission_id = p.permission_id where u.username = #{userName};
     </select>
 </mapper>

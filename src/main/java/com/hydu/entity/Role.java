@@ -1,6 +1,7 @@
 package com.hydu.entity;
 
 import com.baomidou.mybatisplus.annotation.IdType;
+import com.baomidou.mybatisplus.annotation.TableField;
 import com.baomidou.mybatisplus.annotation.TableId;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
@@ -30,11 +31,13 @@ public class Role implements Serializable {
     /**
      * 角色名
      */
+    @TableField(value = "role_name")
     private String roleName;
 
     /**
      * 角色说明
      */
+    @TableField(value = "role_description")
     private String roleDescription;
 
 

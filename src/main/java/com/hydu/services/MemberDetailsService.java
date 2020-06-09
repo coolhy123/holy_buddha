@@ -40,8 +40,12 @@ public class MemberDetailsService implements UserDetailsService {
         List<GrantedAuthority> grantedAuthorities = new ArrayList<>();
 
         //循环把权限标识插入到grantedAuthorities中
-        permissionList.forEach((a)->grantedAuthorities.add(new SimpleGrantedAuthority(a.getPermissionStatus())));
+        permissionList.forEach(
+                permission->{grantedAuthorities.add(new SimpleGrantedAuthority(permission.getPermissionStatus()));
+                });
+//                (a)->grantedAuthorities.add(new SimpleGrantedAuthority(a.getPermissionStatus())));
+        log.info(">>>authorities:{}<<<", grantedAuthorities);
         user.setAuthorities(grantedAuthorities);
-        return (UserDetails)user;
+        return user;
     }
 }
