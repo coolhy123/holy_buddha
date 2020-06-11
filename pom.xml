@@ -94,6 +94,13 @@
 
 
         <!--mybatis plus 整合代码生成器插件依赖 结束-->
+
+        <!--oauth2协议-->
+        <dependency>
+            <groupId>org.springframework.security.oauth</groupId>
+            <artifactId>spring-security-oauth2</artifactId>
+            <version>2.2.1.RELEASE</version>
+        </dependency>
     </dependencies>
 
 </project>
