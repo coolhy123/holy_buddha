@@ -30,8 +30,8 @@ public class AuthorizationConfig extends AuthorizationServerConfigurerAdapter {
                 // 作用域
                 .scopes("all")
                 // 资源的id
-                .resourceIds("mayikt_resource")
+                .resourceIds("coolhy_resource")
                 // 回调地址
-                .redirectUris("http://www.mayikt.com/callback");
+                .redirectUris("http://www.baidu.com");
     }
 }

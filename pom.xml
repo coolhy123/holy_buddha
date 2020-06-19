@@ -6,7 +6,11 @@
 
     <groupId>holy_buddha</groupId>
     <artifactId>holy_buddha</artifactId>
+    <packaging>pom</packaging>
     <version>1.0-SNAPSHOT</version>
+    <modules>
+        <module>../SecurityResource</module>
+    </modules>
 
 
     <parent>
@@ -101,6 +105,14 @@
             <artifactId>spring-security-oauth2</artifactId>
             <version>2.2.1.RELEASE</version>
         </dependency>
+
+        <!--整合RocketMQ 依赖-->
+        <dependency>
+            <groupId>org.apache.rocketmq</groupId>
+            <artifactId>rocketmq-spring-boot-starter</artifactId>
+            <version>2.0.3</version>
+        </dependency>
+
     </dependencies>
 
 </project>
